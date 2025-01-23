@@ -1,5 +1,3 @@
-// ProductRepository.js
-
 const { Product, Tag } = require('../models');
 const { Op } = require('sequelize');
 const ProductDto = require('../dtos/products');

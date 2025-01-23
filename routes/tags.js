@@ -1,14 +1,14 @@
-// TagRoutes.js
-
 const express = require('express');
 const TagRepository = require('../repositories/tags');
 
 const router = express.Router();
 
+const { checkAdmin } = require('../middlewares/auth');
+
 /**
  * Create a new tag
  */
-router.post('/', async (req, res) => {
+router.post('/', checkAdmin, async (req, res) => {
     try {
         const tag = await TagRepository.createTag(req.body);
         res.status(201).json(tag);
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
 /**
  * Get a single tag by ID
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', checkAdmin, async (req, res) => {
     try {
         const tag = await TagRepository.getTagById(req.params.id);
         if (!tag) {
@@ -53,7 +53,7 @@ router.get('/:id', async (req, res) => {
 /**
  * Update a tag by ID
  */
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAdmin, async (req, res) => {
     try {
         const [updatedCount, updatedTags] = await TagRepository.updateTag(req.params.id, req.body);
         if (updatedCount === 0) {
@@ -68,7 +68,7 @@ router.put('/:id', async (req, res) => {
 /**
  * Delete a tag by ID
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAdmin, async (req, res) => {
     try {
         const deletedCount = await TagRepository.deleteTag(req.params.id);
         if (deletedCount === 0) {

@@ -1,5 +1,3 @@
-// TagRepository.js
-
 const { Tag } = require('../models');
 const { Op } = require('sequelize');
 const TagDto = require('../dtos/tags');

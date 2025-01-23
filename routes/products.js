@@ -1,14 +1,15 @@
-// ProductRoutes.js
-
 const express = require('express');
 const ProductRepository = require('../repositories/products');
 
 const router = express.Router();
 
+const { checkAdmin } = require('../middlewares/auth');
+
+
 /**
  * Create a new product
  */
-router.post('/', async (req, res) => {
+router.post('/', checkAdmin, async (req, res) => {
     try {
         const product = await ProductRepository.createProduct(req.body);
         res.status(201).json(product);
@@ -58,7 +59,7 @@ router.get('/:id', async (req, res) => {
 /**
  * Update a product by ID
  */
-router.put('/:id', async (req, res) => {
+router.put('/:id', checkAdmin, async (req, res) => {
     try {
         const [updatedCount, updatedProducts] = await ProductRepository.updateProduct(req.params.id, req.body);
         if (updatedCount === 0) {
@@ -73,7 +74,7 @@ router.put('/:id', async (req, res) => {
 /**
  * Delete a product by ID
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', checkAdmin, async (req, res) => {
     try {
         const deletedCount = await ProductRepository.deleteProduct(req.params.id);
         if (deletedCount === 0) {

@@ -7,6 +7,7 @@ const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
 const tagRouter = require('./routes/tags');
+const authenticationRouter = require('./routes/authentication');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/authentication', authenticationRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/tags', tagRouter);
