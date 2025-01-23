@@ -28,7 +28,7 @@ module.exports = {
         defaultValue: 0
       },
       tags: {
-        type: Sequelize.TEXT,
+        type: Sequelize.JSON,
         allowNull: false
       },
       createdAt: {

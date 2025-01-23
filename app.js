@@ -2,11 +2,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const dotenv = require('dotenv');
-dotenv.config();
 
 const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
+const productsRouter = require('./routes/products');
+const tagRouter = require('./routes/tags');
 
 const app = express();
 
@@ -18,5 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', productsRouter);
+app.use('/tags', tagRouter);
 
 module.exports = app;

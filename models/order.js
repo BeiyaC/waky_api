@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Order.init({
     totalAmount: DataTypes.FLOAT,
     deliveryAddress: DataTypes.STRING,
-    status: DataTypes.ENUM,
+    status: DataTypes.ENUM('pending', 'processing', 'completed', 'cancelled'),
     userId: DataTypes.INTEGER
   }, {
     sequelize,

@@ -3,7 +3,6 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    // Add foreign keys for relationships
 
     // User -> Cart (One-to-Many)
     await queryInterface.addConstraint('Carts', {
@@ -103,10 +102,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    // Drop ProductTags join table
     await queryInterface.dropTable('ProductTags');
 
-    // Remove foreign key constraints
     await queryInterface.removeConstraint('CartItems', 'fk_cartitem_cart');
     await queryInterface.removeConstraint('CartItems', 'fk_cartitem_product');
     await queryInterface.removeConstraint('Carts', 'fk_cart_user');
