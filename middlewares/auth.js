@@ -11,7 +11,7 @@ const verifyJWT = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify JWT with the secret key
+        const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY); // Verify JWT with the secret key
         req.user = decoded; // Attach decoded payload to the request object
         next();
     } catch (err) {

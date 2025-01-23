@@ -35,7 +35,7 @@ class LoginService {
                 email: user.email,
                 isAdmin: user.role === 'admin',
             },
-            process.env.JWT_SECRET, // Replace with your secret key
+            process.env.JWT_PRIVATE_KEY, // Replace with your secret key
             {
                 expiresIn: '1h', // Token expiration time
             }
